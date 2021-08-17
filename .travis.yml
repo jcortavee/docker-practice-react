@@ -1,0 +1,16 @@
+language: generic
+
+# Required to use sudo when running a command
+sudo: required
+
+# The services we need
+services:
+  - docker
+
+# Commands executed before our test
+before_install:
+  - docker build -t jcortave/docker-practice-react -f Dockerfile.dev .
+
+# Containts all the commands that need to be executed
+script:
+  - docker run -e CI=true jcortave/docker-practice-react npm run test  
